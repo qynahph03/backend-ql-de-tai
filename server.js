@@ -26,7 +26,11 @@ connectDB().then(() => {
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: 'https://quan-ly-de-tai-2qy4.vercel.app', // Chỉ cho phép domain này
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Các phương thức HTTP được phép
+  credentials: true // Nếu bạn cần gửi cookie hoặc header xác thực
+}));
 
 // Routes
 app.use('/api/auth', authRoutes);
